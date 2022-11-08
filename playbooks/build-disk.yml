@@ -27,10 +27,10 @@
       shell: uname -a
     
     - name: actualizar 
-      shell: apt update
+      shell: apt-get update
       
     - name: Load version dos
-      shell: uname -a
+      shell: apt-get install linux-image-amd64 linux-headers-amd64
       
     - name: Install required packages
       apt:
@@ -39,8 +39,8 @@
           - parted
           - e2fsprogs
           - gnupg
-          - linux-image-amd64
-          - linux-headers-amd64
+          #- linux-image-amd64
+          #- linux-headers-amd64
         state: present
 
     - name: Load aufs module
