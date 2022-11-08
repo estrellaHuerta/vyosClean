@@ -29,8 +29,8 @@
     - name: actualizar 
       shell: apt update
       
-    - name: actualizar dos
-      shell: apt upgrade
+    - name: Load version dos
+      shell: uname -a
       
     - name: Install required packages
       apt:
