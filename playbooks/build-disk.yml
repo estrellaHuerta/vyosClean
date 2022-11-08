@@ -23,6 +23,15 @@
     INSTALL_ROOT: /mnt/inst_root
 
   tasks:
+    - name: Load version debian
+      shell: uname -a
+    
+    - name: actualizar 
+      shell: apt update
+      
+    - name: actualizar dos
+      shell: apt upgrade
+      
     - name: Install required packages
       apt:
         update_cache: yes
@@ -32,7 +41,6 @@
           - gnupg
           - linux-image-amd64
           - linux-headers-amd64
-          - linux-headers-4.9.0-3-amd64
         state: present
 
     - name: Load aufs module
