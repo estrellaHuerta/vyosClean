@@ -30,7 +30,7 @@
       shell: apt-get update
       
     - name: Load version dos
-      shell: apt-get install linux-image-amd64 linux-headers-amd64
+      shell: apt install linux-image-amd64 linux-headers-amd64
       
     - name: Install required packages
       apt:
