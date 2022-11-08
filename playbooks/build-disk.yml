@@ -25,12 +25,6 @@
   tasks:
     - name: Load version debian
       shell: uname -a
-    
-    - name: actualizar 
-      shell: apt-get update
-      
-    - name: Load version dos
-      shell: apt install linux-image-amd64 linux-headers-amd64
       
     - name: Install required packages
       apt:
@@ -39,12 +33,12 @@
           - parted
           - e2fsprogs
           - gnupg
-          #- linux-image-amd64
-          #- linux-headers-amd64
+          - linux-image-amd64
+          - linux-headers-amd64
         state: present
 
-    - name: Load aufs module
-      shell: modprobe aufs
+    #- name: Load aufs module
+    #  shell: modprobe aufs
 
     # ---- Set up the specified ISO release ----
 
@@ -162,12 +156,13 @@
         state: mounted
 
     - name: Set up union root for post installation tasks
-      mount:
-        name: "{{ INSTALL_ROOT }}"
-        src: none
-        fstype: aufs
-        opts: "noatime,dirs={{ RW_DIR.path }}=rw:{{ READ_ROOT }}=rr"
-        state: mounted
+      mount: name={{ INSTALL_ROOT }} src=overlayfs fstype=overlayfs opts=noatime,upperdir={{ RW_DIR.path }},lowerdir={{ READ_ROOT }} state=mounted
+      #mount:
+      #  name: "{{ INSTALL_ROOT }}"
+      #  src: none
+      #  fstype: aufs
+      #  opts: "noatime,dirs={{ RW_DIR.path }}=rw:{{ READ_ROOT }}=rr"
+      # state: mounted
 
     # ---- Post image installation tasks ----
 
