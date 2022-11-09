@@ -26,16 +26,16 @@
     - name: Load version debian
       shell: uname -a
       
-    #- name: Install required packages
-    #  apt:
+    - name: Install required packages
+      apt:
     #    update_cache: yes
-    #    name:
-    #      - parted
-    #      - e2fsprogs
-    #      - gnupg
+        name:
+          - parted
+          - e2fsprogs
+          - gnupg
     #      #- linux-image-amd64
     #      #- linux-headers-amd64
-    #    state: present
+        state: present
 
     #- name: Load aufs module
     #  shell: modprobe aufs
